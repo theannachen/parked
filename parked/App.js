@@ -1,16 +1,19 @@
-import { RequiredAuthProvider, RedirectToLogin } from "@propelauth/react";
-import {Loading} from "./Auth/Loading"
-import {HomePage} from "./Components/HomePage"
+import React from "react";
+import {AuthProvider, useLogoutFunction, useRedirectFunctions, withRequiredAuthInfo} from "@propelauth/react";
+import { BrowserRouter } from "react-router-dom";
+import HomePage from "./Components/HomePage";
 
-export default function App() {
-    console.log("URL: ");
-
-    console.log(process.env.EXPO_PUBLIC_AUTH_URL);
-    return(
-    <RequiredAuthProvider authUrl={process.env.EXPO_PUBLIC_AUTH_URL}>
-        displayWhileLoading={<Loading />}
-        displayIfLoggedOut={<RedirectToLogin />}
-        <HomePage/>
-    </RequiredAuthProvider>
+const App = () => {
+    return (
+        <AuthProvider authUrl={process.env.EXPO_PUBLIC_PROPELAUTH_AUTH_URL}>
+            <BrowserRouter>
+                <div>
+                    <h1>My React App</h1>
+                    <HomePage />
+                </div>
+            </BrowserRouter>
+        </AuthProvider>
     );
-}
+};
+
+export default App;
