@@ -1,20 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { RequiredAuthProvider, RedirectToLogin } from "@propelauth/react";
+import {Loading} from "./Auth/Loading"
+import {HomePage} from "./Components/HomePage"
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app! yippee! blah blah</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return(
+    <RequiredAuthProvider authUrl={process.env.REACT_APP_AUTH_URL}>
+        displayWhileLoading={<Loading />}
+        displayIfLoggedOut={<RedirectToLogin />}
+        <HomePage/>
+    </RequiredAuthProvider>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
