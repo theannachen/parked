@@ -1,8 +1,8 @@
-import {Box, Button, Card, Flex, Heading, IconButton, Image, MenuButton, StackDivider, Text} from "@chakra-ui/react";
+import {Box, Button, Card, Heading, IconButton, Image, StackDivider, Text} from "@chakra-ui/react";
 import {CardBody, CardHeader, Stack} from "react-bootstrap";
 import logo from "../assets/parked_logo.svg";
 import React from "react";
-import {AddIcon, HamburgerIcon} from "@chakra-ui/icons";
+import {AddIcon} from "@chakra-ui/icons";
 
 const DATA = [
     {
@@ -75,12 +75,6 @@ const PaymentCard = ({ data, index}) => {
 
 const Payments = () => {
     return (<div>
-            <Box display="flex"
-                 justifyContent="center" py='2'
-            bg='tomato'>
-                <Image objectFit={"contain"} src={logo} alt='logo' htmlWidth='20%'/>
-
-            </Box>
             <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Box><Heading m='15' p ='5' as='h2' size='3xl'>Payment Methods</Heading></Box>
                 <Box><IconButton
