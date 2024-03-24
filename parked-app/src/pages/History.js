@@ -5,6 +5,8 @@ import logo from "../assets/parked_logo.svg";
 import {DownloadIcon} from "@chakra-ui/icons";
 import {Link} from "react-router-dom";
 import html2pdf from "html2pdf.js/src";
+import LogoBanner from "../components/LogoBanner";
+import BacktoDashboardButton from "../components/BacktoDashboardButton";
 
 const handlePrintPDF = () => {
     // Select the element containing the content to be printed
@@ -88,43 +90,26 @@ const TransactionCard = ({data}) => {
 };
 
 const History = () => {
-    return (<div>
-            <Box display="flex"
-                 justifyContent="center" py='2'
-                 bg='tomato'>
-                <Image objectFit={"contain"} src={logo} alt='logo' htmlWidth='20%'/>
-
-            </Box>
+    return (<div >
+            <LogoBanner/>
             <div id="contentToPrint">
 
 
-                <Box display="flex" justifyContent="space-between" alignItems="center">
-                    <Box><Heading m='15' p='5' as='h2' size='3xl'>Transaction History</Heading></Box>
-                    <Box><IconButton
-                        m='15' p='5'
-                        aria-label='Options'
-                        icon={<DownloadIcon/>}
-                        variant='outline'
-                        size="lg"
-                        onClick={handlePrintPDF}
-                    /></Box>
-                </Box>
-                {DATA.reverse().map((item) => (
-                    <TransactionCard key={item.Record_Number} data={item}/>
-                ))}
-                <Box display="flex"
-                     justifyContent="center" my='8vh'>
-                    <Link to="/dashboard">
-                        <Button bgColor="green.500"
-                                color="white"
-                                _hover={{bg: 'green.400', transform: "scale(1.02)"}}
-                                size="lg"
-                                fontSize="2xl"
-                                p='8'>
-                            Go Back to Dashboard
-                        </Button>
-                    </Link>
-                </Box>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Box><Heading m='15' p ='5' as='h2' size='3xl'>Transaction History</Heading></Box>
+                <Box><IconButton
+                    m='15' p ='5'
+                    aria-label='Options'
+                    icon={<DownloadIcon/>}
+                    variant='outline'
+                    size="lg"
+                    onClick={handlePrintPDF}
+                /></Box>
+            </Box>
+            {DATA.reverse().map((item) => (
+                <TransactionCard key={item.Record_Number} data={item}/>
+            ))}
+            <BacktoDashboardButton/>
             </div>
         </div>
     );

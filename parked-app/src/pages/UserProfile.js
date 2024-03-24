@@ -4,6 +4,7 @@ import {CardBody, CardHeader, Stack} from "react-bootstrap";
 import logo from "../assets/parked_logo.svg";
 import {AddIcon} from "@chakra-ui/icons";
 import LogoBanner from "../components/LogoBanner";
+import BacktoDashboardButton from "../components/BacktoDashboardButton";
 
 const DATA =
     {
@@ -84,24 +85,29 @@ const VehicleCard = ({key, data}) => {
 const UserProfile = () => {
     const userData = DATA
 
-    return (<div p={4}>
+    return (<Box p='4'>
             <LogoBanner/>
             <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Box><Heading m='15' p ='5' as='h2' size='3xl'>Payment Methods</Heading></Box>
+                <Box><Heading m='15' p ='5' as='h2' size='2xl'>Personal Information</Heading></Box>
             </Box>
-            <Box mb={4}>
-                <Text fontWeight="bold">First Name:</Text>
-                <Text>{userData.first_name}</Text>
+            <Box mb={4} mx={15} p={5}>
+                <Heading size='md' textTransform='uppercase' pb={3}>
+                    First Name:
+                </Heading>
+                <Text pt='2'>{userData.first_name}</Text>
             </Box>
-
-            <Box mb={4}>
-                <Text fontWeight="bold">Last Name:</Text>
-                <Text>{userData.last_name}</Text>
+            <Box mb={4} mx={15} p={5}>
+                <Heading size='md' textTransform='uppercase' pb={3}>
+                    Last Name:
+                </Heading>
+                <Text pt='2'>{userData.last_name}</Text>
             </Box>
+            <Heading m='15' p ='5' as='h2' size='2xl'>Registered Vehicles</Heading>
             {userData.vehicles.map((item, index) => (
                 <VehicleCard key={item.Record_Number} data={item}/>
             ))}
-            </div>
+            <BacktoDashboardButton/>
+            </Box>
     );
 };
 

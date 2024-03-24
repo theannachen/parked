@@ -1,9 +1,8 @@
 import {Box, Button, Card, Heading, IconButton, Image, StackDivider, Text} from "@chakra-ui/react";
 import {CardBody, CardHeader, Stack} from "react-bootstrap";
-import logo from "../assets/parked_logo.svg";
 import React from "react";
-import {AddIcon, HamburgerIcon} from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import LogoBanner from "../components/LogoBanner";
+import BacktoDashboardButton from "../components/BacktoDashboardButton";
 
 const DATA = [
     {
@@ -76,32 +75,12 @@ const PaymentCard = ({ data, index}) => {
 
 const Payments = () => {
     return (<div>
-            <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Box><Heading m='15' p ='5' as='h2' size='3xl'>Payment Methods</Heading></Box>
-                <Box><IconButton
-                    m='15' p ='5'
-                    aria-label='Options'
-                    icon={<AddIcon/>}
-                    variant='outline'
-                    size="lg"
-                /></Box>
-            </Box>
+            <LogoBanner/>
             {DATA.map((item, index) => (
                 <PaymentCard key={item.Record_Number} data={item} index = {index + 1}/>
             ))}
-            <Box display="flex"
-                 justifyContent="center" my = '8vh' >
-                <Link to="/dashboard">
-                    <Button bgColor="green.500"
-                            color="white"
-                            _hover={{bg: 'green.400', transform: "scale(1.02)"}}
-                            size="lg"
-                            fontSize="2xl"
-                            p='8'>
-                        Go Back to Dashboard
-                    </Button>
-                </Link>
-            </Box>
+
+            <BacktoDashboardButton/>
         </div>
     );
 };
