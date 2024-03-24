@@ -9,14 +9,13 @@ import {
     MenuList,
     MenuItem,
     Image,
-    IconButton, Center,
+    IconButton, Center, MenuDivider,
 } from '@chakra-ui/react';
 import {HamburgerIcon} from '@chakra-ui/icons';
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import logo from '../assets/logo.png';
 const NavBar = () => {
     return (
-
         <Flex as="nav" align="center" h = "90" justify="space-between" padding="1.5rem" bg="white" boxShadow="md">
             <Wrap>
                 <WrapItem>
