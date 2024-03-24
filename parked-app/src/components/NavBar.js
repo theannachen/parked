@@ -16,7 +16,16 @@ import { Wrap, WrapItem } from '@chakra-ui/react'
 import logo from '../assets/logo.png';
 import LandingPage from "../pages/LandingPage";
 import {useLogoutFunction, withRequiredAuthInfo} from "@propelauth/react";
-const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change}) => {
+import {useState} from "react";
+
+const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change, setDashboard, getIsHost}) => {
+    // var switchComponent;
+    const [checked, setChecked] = useState(getIsHost);
+    // checked ? switchComponent =  : switchComponent = <Switch colorScheme="teal" size="lg" mx='5' onChange = {()=>{
+    //     setChecked(!checked);
+    //     setDashboard(!checked);
+    // }}/>
+
     const logoutFn = useLogoutFunction()
         return (
 
@@ -34,7 +43,10 @@ const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change}) => {
                 <Flex align="center">
                     <Flex mx='10'>
                         <Text as='b'>Customer</Text>
-                        <Switch colorScheme="teal" size="lg" mx='5'/>
+                        <Switch colorScheme="teal" size="lg" mx='5' onChange = {()=>{
+                            setChecked(!checked);
+                            setDashboard(!checked);
+                        }}/>
                         <Text as='b'>Host</Text>
                     </Flex>
                     <Menu>
