@@ -1,4 +1,5 @@
 import {Box, Button, Card, Flex, Heading, Text} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 
@@ -44,16 +45,18 @@ const HorizontalCard = ({data}) => {
                 <Box display="inline-flex" color='green.700' fontSize='3xl'>$</Box> {data.Price.value}
             </Box>
             {/* Right Section */}
-            <Button
-                colorScheme="green.500"
-                variant="outline"
-                color="green.500"
-                _hover={{bg: 'green.500', color: '#ffffff'}}
-                size="lg"
-                fontSize="2xl"
-            >
-                Book now!
-            </Button>
+            <Link to='/booking'>
+                <Button
+                    colorScheme="green.500"
+                    variant="outline"
+                    color="green.500"
+                    _hover={{bg: 'green.500', color: '#ffffff'}}
+                    size="lg"
+                    fontSize="2xl"
+                >
+                    Book now!
+                </Button>
+            </Link>
 
         </Flex>
     </Card>);
@@ -65,7 +68,17 @@ const CustomerDashboard = () => {
     return (<div>
         <div>
             <Text ml='55' mt='15' fontSize='25' color='teal.800' noOfLines={1}>Welcome, customer!</Text>
-            <Heading ml='10' mb='4' p='3' size='3xl' color='teal.800' noOfLines={1}>Available Bookings</Heading>
+            <Heading
+                ml='10'
+                mb='4'
+                p='3'
+                size='3xl'
+                bgGradient='linear(to-r, teal.400, green.300)'
+                bgClip='text'
+                noOfLines={1}
+            >
+                Available Bookings
+            </Heading>
             {books.map((booking) => (<HorizontalCard key={booking.$id.value} data={booking}/>))}
         </div>
     </div>);

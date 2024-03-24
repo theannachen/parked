@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Landing from './pages/LandingPage';
 import Dashboard from "./pages/Dashboard";
+import Booking from "./pages/Booking";
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from '@propelauth/react';
 import {BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,6 +20,7 @@ root.render(
                       <Route path="/" element={<App />} />
                       <Route path="/landing" element={<Landing />} />
                       <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/booking" element={<Booking />} />
                   </Routes>
               </ChakraProvider>
           </BrowserRouter>

@@ -10,18 +10,10 @@ const LandingPage = withAuthInfo(({isLoggedIn, change}) => {
     let redirect = isLoggedIn ? "/dashboard" : "";
     return (
         <div>
-            <Link to="/dashboard">
-            <Button colorScheme="blue" onClick={() => {
-                if(isLoggedIn){
-
-                }
-                else{
-                    text = "Dashboard";
-                    redirectToLoginPage();
-                }
-            }}>
-                {text}
-            </Button>
+            <Link to="/dashboard/">
+                <Button colorScheme="blue">
+                    {text}
+                </Button>
             </Link>
         </div>
     );
