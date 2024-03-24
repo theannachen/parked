@@ -4,7 +4,8 @@
   "info": {
     "singularName": "parked-user",
     "pluralName": "parked-users",
-    "displayName": "ParkedUser"
+    "displayName": "ParkedUser",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -26,6 +27,21 @@
     "uid": {
       "type": "uid",
       "required": true
+    },
+    "listings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::listing.listing"
+    },
+    "payments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment.payment"
+    },
+    "vehicles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vehicle.vehicle"
     }
   }
 }
