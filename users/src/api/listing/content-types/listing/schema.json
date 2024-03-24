@@ -4,15 +4,37 @@
   "info": {
     "singularName": "listing",
     "pluralName": "listings",
-    "displayName": "Listing"
+    "displayName": "Listing",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "uid": {
       "type": "uid",
+      "required": true
+    },
+    "Address": {
+      "type": "string",
+      "required": true
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::app-user.app-user",
+      "inversedBy": "listings"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "start_date": {
+      "type": "date",
+      "required": true
+    },
+    "end_date": {
+      "type": "date",
       "required": true
     }
   }

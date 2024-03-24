@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "Transaction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uid": {
+      "type": "uid",
+      "required": true
+    },
+    "buyer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::app-user.app-user",
+      "inversedBy": "transactions"
+    },
+    "listing": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::listing.listing"
+    },
+    "cost": {
+      "type": "decimal",
+      "required": true
+    }
+  }
+}

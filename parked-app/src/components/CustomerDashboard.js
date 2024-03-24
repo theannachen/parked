@@ -23,7 +23,7 @@ const HorizontalCard = ({data}) => {
         p="4"
         mb="5"
         color='teal.900'
-        variant='outline'
+        variant='outline' 
         borderWidth="2px"
         borderColor='teal.500'
         mx="20"
