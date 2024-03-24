@@ -25,6 +25,7 @@ const HorizontalCard = ({data, index}) => {
     if (data.Availability.value != 'Yes') {
         return null;
     }
+    const bookingsURL = '/booking?uid=' + data.u_id.value;
     return (<Card
         p="4"
         mb="5"
@@ -47,7 +48,7 @@ const HorizontalCard = ({data, index}) => {
                 <Box display="inline-flex" opacity="70%" fontSize='3xl'>$</Box> {data.Price.value}
             </Box>
             {/* Right Section */}
-            <Link to='/booking'>
+            <Link to={bookingsURL}>
                 <Button
                     colorScheme="white"
                     variant="outline"
