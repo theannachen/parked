@@ -1,5 +1,6 @@
 import {useLogoutFunction, useRedirectFunctions, withRequiredAuthInfo} from "@propelauth/react";
 import React from "react";
+import { Box, Button, Card, Flex, Text } from "@chakra-ui/react";
 
 const bookings = ["bbb", "ccc", "ddd"];
 
@@ -61,6 +62,24 @@ const DATA = [
 //     </View>
 // );
 
+const HorizontalCard = ({ data }) => {
+    return (
+        <Card p="4" mb="4">
+            <Flex alignItems="center" justifyContent="space-between">
+                {/* Left Section */}
+                <Box flex="1">
+                    <Text fontWeight="bold">{data.Address}</Text>
+                    {data.Zone && <Text>{data.Zone}</Text>}
+                    {data.Location_Description && <Text>{data.Location_Description}</Text>}
+                </Box>
+
+                {/* Right Section */}
+                <Button colorScheme="blue">Book now!</Button>
+            </Flex>
+        </Card>
+    );
+};
+
 const HomePage = withRequiredAuthInfo(({ isLoggedIn }) => {
     const logoutFn = useLogoutFunction()
     return (
@@ -74,6 +93,9 @@ const HomePage = withRequiredAuthInfo(({ isLoggedIn }) => {
             {/*        keyExtractor={item => item.Record_Number}*/}
             {/*    />*/}
             {/*</SafeAreaView>*/}
+            {DATA.map((item) => (
+                <HorizontalCard key={item.Record_Number} data={item} />
+            ))}
             <button onClick={() => logoutFn(true)}>
                 Click here to log out
             </button>
