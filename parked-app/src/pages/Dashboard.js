@@ -58,22 +58,16 @@ const HorizontalCard = ({ data }) => {
 
 
 const Dashboard = withRequiredAuthInfo(({ isLoggedIn , change}) => {
-    var headersInfo = {
-        'X-Cybozu-API-Token': process.env.KINTONE_API_TOKEN
-    }
-    const logoutFn = useLogoutFunction()
     return (
         <div>
-            <NavBar/>
+            <NavBar change ={change}/>
             <Heading m='15' p ='5' as='h2' size='3xl' noOfLines={1}>Available Bookings</Heading>
             {DATA.map((item) => (
                 <HorizontalCard key={item.Record_Number} data={item} />
             ))}
             <Box display="flex"
                  justifyContent="center">
-                <Button colorScheme="blue" onClick={() => {
-                    change(<LandingPage change ={change}/>);
-                }}>
+                <Button colorScheme="blue" onClick={() => {change(<LandingPage change ={change}/>);}}>
                     Click me!
                 </Button>
 

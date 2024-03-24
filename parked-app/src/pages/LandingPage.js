@@ -5,8 +5,6 @@ import Dashboard from "./Dashboard";
 const LandingPage = ({change}) => {
     return (
         <div>
-            <NavBar/>
-
             <Button colorScheme="blue" onClick={() => {
                 change(<Dashboard change ={change}/>);
             }}>
