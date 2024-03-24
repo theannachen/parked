@@ -156,7 +156,7 @@ const LandingPage = withAuthInfo(({isLoggedIn, change, deviceType}) => {
                 >
                     {cards.map((card, index) => (
                         <Box key={index} p={4}>
-                            <Card textAlign={"center"}>
+                            <Card textAlign={"center"} borderRadius='xl' shadow='lg'>
                                 <CardHeader>
                                     <Heading size='md'>{card.title}</Heading>
                                 </CardHeader>
