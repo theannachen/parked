@@ -2,6 +2,8 @@ import {useLogoutFunction, useRedirectFunctions, withRequiredAuthInfo} from "@pr
 import React from "react";
 import {Box, Button, Card, Flex, Text, Stack, Heading} from "@chakra-ui/react";
 import AuthButtons from "../components/AuthButtons";
+import NavBar from "../components/NavBar";
+import LandingPage from "./LandingPage";
 
 const bookings = ["bbb", "ccc", "ddd"];
 
@@ -62,6 +64,7 @@ const Dashboard = withRequiredAuthInfo(({ isLoggedIn , change}) => {
     const logoutFn = useLogoutFunction()
     return (
         <div>
+            <NavBar/>
             <Heading m='15' p ='5' as='h2' size='3xl' noOfLines={1}>Available Bookings</Heading>
             {DATA.map((item) => (
                 <HorizontalCard key={item.Record_Number} data={item} />
@@ -69,7 +72,7 @@ const Dashboard = withRequiredAuthInfo(({ isLoggedIn , change}) => {
             <Box display="flex"
                  justifyContent="center">
                 <Button colorScheme="blue" onClick={() => {
-                    change(<AuthButtons/>);
+                    change(<LandingPage change ={change}/>);
                 }}>
                     Click me!
                 </Button>

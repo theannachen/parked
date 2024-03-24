@@ -1,22 +1,17 @@
 import {withAuthInfo } from '@propelauth/react';
-import {withAuthInfo } from '@propelauth/react';
 import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage";
 import { useState } from 'react';
 
 
 const App = withAuthInfo(({isLoggedIn}) => {
-  const [curPage, setCurPage] = useState(<Dashboard change = {handleState}/>);
+  const [curPage, setCurPage] = useState(<LandingPage change = {handleState}/>);
 
   function handleState(page) {
     setCurPage(page);
   }
 
-  if (isLoggedIn) {
-    return curPage
-  } else {
-    return <LandingPage/>
-  }
+  return curPage
 })
 
 export default App;

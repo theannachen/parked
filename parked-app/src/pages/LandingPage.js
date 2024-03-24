@@ -1,12 +1,19 @@
-import { Box, Button } from "@chakra-ui/react";
-import {useRedirectFunctions, withAuthInfo} from "@propelauth/react";
-import AuthButtons from "../components/AuthButtons";
+import NavBar from "../components/NavBar";
+import {Button} from "@chakra-ui/react";
+import Dashboard from "./Dashboard";
 
-const LandingPage = withAuthInfo(({isLoggedIn}) => {
-
+const LandingPage = ({change}) => {
     return (
-        <AuthButtons/>
+        <div>
+            <NavBar/>
+
+            <Button colorScheme="blue" onClick={() => {
+                change(<Dashboard change ={change}/>);
+            }}>
+                Click me!
+            </Button>
+        </div>
     );
-})
+};
 
 export default LandingPage;
