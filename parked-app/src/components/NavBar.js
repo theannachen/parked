@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import {HamburgerIcon} from '@chakra-ui/icons';
 import { Wrap, WrapItem } from '@chakra-ui/react'
-import logo from '../assets/logo.png';
+import logo from '../assets/parked_logo.png';
 import LandingPage from "../pages/LandingPage";
 import {useLogoutFunction, withRequiredAuthInfo} from "@propelauth/react";
 import {useState} from "react";
