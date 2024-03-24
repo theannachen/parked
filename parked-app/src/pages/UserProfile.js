@@ -11,6 +11,7 @@ const DATA =
         Record_Number: 1,
         first_name:"John",
         last_name:"Smith",
+        email_address:"testing@testing.com",
         vehicles:[{
             Record_Number: 1,
             license_plate: "B2N8V93",

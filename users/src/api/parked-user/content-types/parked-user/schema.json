@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parked_users",
+  "info": {
+    "singularName": "parked-user",
+    "pluralName": "parked-users",
+    "displayName": "ParkedUser"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string",
+      "required": true
+    },
+    "last_name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "uid": {
+      "type": "uid",
+      "required": true
+    }
+  }
+}
