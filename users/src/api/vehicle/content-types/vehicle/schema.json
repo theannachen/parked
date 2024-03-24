@@ -4,7 +4,8 @@
   "info": {
     "singularName": "vehicle",
     "pluralName": "vehicles",
-    "displayName": "Vehicle"
+    "displayName": "Vehicle",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,24 @@
   "attributes": {
     "uid": {
       "type": "uid"
+    },
+    "make": {
+      "type": "string",
+      "required": true
+    },
+    "model": {
+      "type": "string",
+      "required": true
+    },
+    "license_plate": {
+      "type": "string",
+      "required": true
+    },
+    "app_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::app-user.app-user",
+      "inversedBy": "vehicles"
     }
   }
 }

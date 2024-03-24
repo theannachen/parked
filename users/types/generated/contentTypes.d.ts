@@ -788,29 +788,52 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiListingListing extends Schema.CollectionType {
-  collectionName: 'listings';
+export interface ApiAppUserAppUser extends Schema.CollectionType {
+  collectionName: 'app_users';
   info: {
-    singularName: 'listing';
-    pluralName: 'listings';
-    displayName: 'Listing';
+    singularName: 'app-user';
+    pluralName: 'app-users';
+    displayName: 'AppUser';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    uid: Attribute.UID & Attribute.Required;
+    FirstName: Attribute.String & Attribute.Required;
+    LastName: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required;
+    uid: Attribute.UID;
+    listings: Attribute.Relation<
+      'api::app-user.app-user',
+      'oneToMany',
+      'api::listing.listing'
+    >;
+    payments: Attribute.Relation<
+      'api::app-user.app-user',
+      'oneToMany',
+      'api::payment.payment'
+    >;
+    transactions: Attribute.Relation<
+      'api::app-user.app-user',
+      'oneToMany',
+      'api::transaction.transaction'
+    >;
+    vehicles: Attribute.Relation<
+      'api::app-user.app-user',
+      'oneToMany',
+      'api::vehicle.vehicle'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::listing.listing',
+      'api::app-user.app-user',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::listing.listing',
+      'api::app-user.app-user',
       'oneToOne',
       'admin::user'
     > &
@@ -818,48 +841,38 @@ export interface ApiListingListing extends Schema.CollectionType {
   };
 }
 
-export interface ApiParkedUserParkedUser extends Schema.CollectionType {
-  collectionName: 'parked_users';
+export interface ApiListingListing extends Schema.CollectionType {
+  collectionName: 'listings';
   info: {
-    singularName: 'parked-user';
-    pluralName: 'parked-users';
-    displayName: 'ParkedUser';
+    singularName: 'listing';
+    pluralName: 'listings';
+    displayName: 'Listing';
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    first_name: Attribute.String & Attribute.Required;
-    last_name: Attribute.String & Attribute.Required;
-    email: Attribute.Email & Attribute.Required;
     uid: Attribute.UID & Attribute.Required;
-    listings: Attribute.Relation<
-      'api::parked-user.parked-user',
-      'oneToMany',
-      'api::listing.listing'
+    Address: Attribute.String & Attribute.Required;
+    owner: Attribute.Relation<
+      'api::listing.listing',
+      'manyToOne',
+      'api::app-user.app-user'
     >;
-    payments: Attribute.Relation<
-      'api::parked-user.parked-user',
-      'oneToMany',
-      'api::payment.payment'
-    >;
-    vehicles: Attribute.Relation<
-      'api::parked-user.parked-user',
-      'oneToMany',
-      'api::vehicle.vehicle'
-    >;
+    price: Attribute.Decimal;
+    start_date: Attribute.Date & Attribute.Required;
+    end_date: Attribute.Date & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::parked-user.parked-user',
+      'api::listing.listing',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::parked-user.parked-user',
+      'api::listing.listing',
       'oneToOne',
       'admin::user'
     > &
@@ -873,15 +886,23 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     singularName: 'payment';
     pluralName: 'payments';
     displayName: 'Payment';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     uid: Attribute.UID & Attribute.Required;
+    carrier: Attribute.String & Attribute.Required;
+    last_four: Attribute.String & Attribute.Required;
+    expiration: Attribute.String & Attribute.Required;
+    app_user: Attribute.Relation<
+      'api::payment.payment',
+      'manyToOne',
+      'api::app-user.app-user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::payment.payment',
       'oneToOne',
@@ -897,18 +918,69 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
   };
 }
 
+export interface ApiTransactionTransaction extends Schema.CollectionType {
+  collectionName: 'transactions';
+  info: {
+    singularName: 'transaction';
+    pluralName: 'transactions';
+    displayName: 'Transaction';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    uid: Attribute.UID & Attribute.Required;
+    buyer: Attribute.Relation<
+      'api::transaction.transaction',
+      'manyToOne',
+      'api::app-user.app-user'
+    >;
+    listing: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'api::listing.listing'
+    >;
+    cost: Attribute.Decimal & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiVehicleVehicle extends Schema.CollectionType {
   collectionName: 'vehicles';
   info: {
     singularName: 'vehicle';
     pluralName: 'vehicles';
     displayName: 'Vehicle';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     uid: Attribute.UID;
+    make: Attribute.String & Attribute.Required;
+    model: Attribute.String & Attribute.Required;
+    license_plate: Attribute.String & Attribute.Required;
+    app_user: Attribute.Relation<
+      'api::vehicle.vehicle',
+      'manyToOne',
+      'api::app-user.app-user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -945,9 +1017,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::app-user.app-user': ApiAppUserAppUser;
       'api::listing.listing': ApiListingListing;
-      'api::parked-user.parked-user': ApiParkedUserParkedUser;
       'api::payment.payment': ApiPaymentPayment;
+      'api::transaction.transaction': ApiTransactionTransaction;
       'api::vehicle.vehicle': ApiVehicleVehicle;
     }
   }

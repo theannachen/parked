@@ -1,22 +1,22 @@
 {
   "kind": "collectionType",
-  "collectionName": "parked_users",
+  "collectionName": "app_users",
   "info": {
-    "singularName": "parked-user",
-    "pluralName": "parked-users",
-    "displayName": "ParkedUser",
+    "singularName": "app-user",
+    "pluralName": "app-users",
+    "displayName": "AppUser",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "first_name": {
+    "FirstName": {
       "type": "string",
       "required": true
     },
-    "last_name": {
+    "LastName": {
       "type": "string",
       "required": true
     },
@@ -25,23 +25,31 @@
       "required": true
     },
     "uid": {
-      "type": "uid",
-      "required": true
+      "type": "uid"
     },
     "listings": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::listing.listing"
+      "target": "api::listing.listing",
+      "mappedBy": "owner"
     },
     "payments": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::payment.payment"
+      "target": "api::payment.payment",
+      "mappedBy": "app_user"
+    },
+    "transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::transaction.transaction",
+      "mappedBy": "buyer"
     },
     "vehicles": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::vehicle.vehicle"
+      "target": "api::vehicle.vehicle",
+      "mappedBy": "app_user"
     }
   }
 }

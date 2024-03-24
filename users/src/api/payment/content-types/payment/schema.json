@@ -4,16 +4,35 @@
   "info": {
     "singularName": "payment",
     "pluralName": "payments",
-    "displayName": "Payment"
+    "displayName": "Payment",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "uid": {
       "type": "uid",
       "required": true
+    },
+    "carrier": {
+      "type": "string",
+      "required": true
+    },
+    "last_four": {
+      "type": "string",
+      "required": true
+    },
+    "expiration": {
+      "type": "string",
+      "required": true
+    },
+    "app_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::app-user.app-user",
+      "inversedBy": "payments"
     }
   }
 }
