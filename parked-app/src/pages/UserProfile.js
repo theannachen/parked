@@ -1,10 +1,10 @@
 import {Box, Card, Heading, IconButton, Image, StackDivider, Text} from "@chakra-ui/react";
 import React from "react";
 import {CardBody, CardHeader, Stack} from "react-bootstrap";
-import logo from "../assets/parked_logo.svg";
-import {AddIcon} from "@chakra-ui/icons";
 import LogoBanner from "../components/LogoBanner";
 import BacktoDashboardButton from "../components/BacktoDashboardButton";
+import {useAuthInfo} from "@propelauth/react";
+import axios from "axios";
 
 const DATA =
     {
@@ -61,54 +61,65 @@ const DATA =
 ;
 
 // VehicleList component
-const VehicleCard = ({key, data}) => {
-    return (
-        <Card m='30' py='10' pl = '10%'>
-            <CardHeader>
-                <Heading size='lg' mb='10'>{data.make_model}</Heading>
-            </CardHeader>
-            <CardBody>
-                <Stack divider={<StackDivider />} spacing='4'>
-                    <Box>
-                        <Heading size='md' textTransform='uppercase'>
-                            License Plate:
-                        </Heading>
-                        <Text pt='2' mb = '8'>
-                            {data.license_plate}
-                        </Text>
-                    </Box>
-                </Stack>
-            </CardBody>
-        </Card>
-    );
-};
+// const VehicleCard = ({key, data}) => {
+//
+//     return (
+//         <Card m='30' py='10' pl = '10%'>
+//             <CardHeader>
+//                 <Heading size='lg' mb='10'>{data.make_model}</Heading>
+//             </CardHeader>
+//             <CardBody>
+//                 <Stack divider={<StackDivider />} spacing='4'>
+//                     <Box>
+//                         <Heading size='md' textTransform='uppercase'>
+//                             License Plate:
+//                         </Heading>
+//                         <Text pt='2' mb = '8'>
+//                             {data.license_plate}
+//                         </Text>
+//                     </Box>
+//                 </Stack>
+//             </CardBody>
+//         </Card>
+//     );
+// };
 
-const UserProfile = () => {
-    const userData = DATA
+const UserProfile = async () => {
+    const email = useAuthInfo().user.email;
+    let userData;
+
+    try {
+        const response = await axios.get("http://localhost:5600/getUser?email=" + email);
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+        throw error; // Re-throw the error to handle it outside the function
+    }
+    // console.log(userData);
 
     return (<Box p='4'>
             <LogoBanner/>
-            <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Box><Heading m='15' p ='5' as='h2' size='2xl'>Personal Information</Heading></Box>
-            </Box>
-            <Box mb={4} mx={15} p={5}>
-                <Heading size='md' textTransform='uppercase' pb={3}>
-                    First Name:
-                </Heading>
-                <Text pt='2'>{userData.first_name}</Text>
-            </Box>
-            <Box mb={4} mx={15} p={5}>
-                <Heading size='md' textTransform='uppercase' pb={3}>
-                    Last Name:
-                </Heading>
-                <Text pt='2'>{userData.last_name}</Text>
-            </Box>
-            <Heading m='15' p ='5' as='h2' size='2xl'>Registered Vehicles</Heading>
-            {userData.vehicles.map((item, index) => (
-                <VehicleCard key={item.Record_Number} data={item}/>
-            ))}
+            {/*<Box display="flex" justifyContent="space-between" alignItems="center">*/}
+            {/*    <Box><Heading m='15' p='5' as='h2' size='2xl'>Personal Information</Heading></Box>*/}
+            {/*</Box>*/}
+            {/*<Box mb={4} mx={15} p={5}>*/}
+            {/*    <Heading size='md' textTransform='uppercase' pb={3}>*/}
+            {/*        First Name:*/}
+            {/*    </Heading>*/}
+            {/*    <Text pt='2'>{userData.first_name}</Text>*/}
+            {/*</Box>*/}
+            {/*<Box mb={4} mx={15} p={5}>*/}
+            {/*    <Heading size='md' textTransform='uppercase' pb={3}>*/}
+            {/*        Last Name:*/}
+            {/*    </Heading>*/}
+            {/*    <Text pt='2'>{userData.last_name}</Text>*/}
+            {/*</Box>*/}
+            {/*<Heading m='15' p='5' as='h2' size='2xl'>Registered Vehicles</Heading>*/}
+            {/*{userData.vehicles.map((item, index) => (*/}
+            {/*    <VehicleCard key={item.Record_Number} data={item}/>*/}
+            {/*))}*/}
             <BacktoDashboardButton/>
-            </Box>
+        </Box>
     );
 };
 
