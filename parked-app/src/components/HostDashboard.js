@@ -28,27 +28,28 @@ const DATA = [
     },
 ];
 
-// const getBookings = async() => {
-//     try {
-//         const response = await axios.get("http://localhost:5600/");
-//         return response.data.record.Address;
-//     } catch (error) {
-//         console.error('Error fetching data: ', error);
-//         throw error; // Re-throw the error to handle it outside the function
-//     }
-// }
-//
-// const books = await getBookings();
+const getBookings = async () => {
+    try {
+        const response = await axios.get("http://localhost:5600/");
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+        throw error; // Re-throw the error to handle it outside the function
+    }
+}
 
-const HorizontalCard = ({ data }) => {
+const books = await getBookings();
+
+const HorizontalCard = ({data}) => {
     return (
         <Card p="4" mb="5" bg='tomato' mx="20">
             <Flex alignItems="center" justifyContent="space-between">
+                {console.log(data)}
                 {/* Left Section */}
                 <Box flex="1">
-                    <Text fontWeight="bold">{data.Address}</Text>
-                    {data.Zone && <Text>Zoning: {data.Zone}</Text>}
-                    {data.Location_Description && <Text>Additional Information: {data.Location_Description}</Text>}
+                    <Text fontWeight="bold">{data.Address.value}</Text>
+                    {data.Zone.value && <Text>Zoning: {data.Zone.value}</Text>}
+                    {data.Desc.value && <Text>Additional Information: {data.Desc.value}</Text>}
                 </Box>
 
                 {/* Right Section */}
@@ -61,15 +62,14 @@ const HorizontalCard = ({ data }) => {
     );
 };
 
-
 const HostDashboard = ({change, setDashboard}) => {
 
     return (
         <div>
             <div>
                 <Heading m='15' p ='5' as='h2' size='3xl' noOfLines={1}>Host! Available Bookings</Heading>
-                {DATA.map((item) => (
-                    <HorizontalCard key={item.Record_Number} data={item} />
+                {books.map((booking) => (
+                    <HorizontalCard key={booking.$id.value} data={booking} />
                 ))}
             </div>
         </div>
