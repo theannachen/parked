@@ -56,9 +56,8 @@ const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change, setDashboard, getIs
                         <MenuList>
                             <menuGroup title="Profile">
                                 <Link to="/profile"><MenuItem>My Profile</MenuItem></Link>
-                                <Link to="/payments"><MenuItem>Payment Methods</MenuItem></Link>
-                                <Link to="/dashboard"><MenuItem>Parking History</MenuItem></Link>
                                 <Link to="/history"><MenuItem>Transaction History</MenuItem></Link>
+                                <Link to="/payments"><MenuItem>Payment Methods</MenuItem></Link>
                             </menuGroup>
                             <MenuDivider/>
                             <MenuItem onClick={() => {

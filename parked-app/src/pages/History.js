@@ -1,4 +1,4 @@
-import {Box, Button, Card, Heading, IconButton, Image, StackDivider, Text} from "@chakra-ui/react";
+import {Box, Card, Heading, IconButton, Image, StackDivider, Text} from "@chakra-ui/react";
 import {CardBody, CardHeader, Stack} from "react-bootstrap";
 import React from "react";
 import logo from "../assets/parked_logo.svg";
@@ -45,7 +45,7 @@ const DATA = [
 
 const TransactionCard = ({data}) => {
     return (
-        <Card m='30' py='10' pl='10%'>
+        <Card m='30' py='10' pl='10%' bgGradient='linear(to-r, white, green.100)' color='teal.800'>
             <CardHeader>
                 <Heading size='lg' mb='10'>{data.Address}</Heading>
             </CardHeader>
@@ -71,6 +71,7 @@ const TransactionCard = ({data}) => {
                         <Heading size='md' textTransform='uppercase'>
                             Transaction Amount
                         </Heading>
+
                         <Text pt='2' mb='8'>
                             ${data.cost}
                         </Text>
@@ -90,26 +91,37 @@ const TransactionCard = ({data}) => {
 };
 
 const History = () => {
-    return (<div >
+    return (<div>
             <LogoBanner/>
             <div id="contentToPrint">
 
 
-            <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Box><Heading m='15' p ='5' as='h2' size='3xl'>Transaction History</Heading></Box>
-                <Box><IconButton
-                    m='15' p ='5'
-                    aria-label='Options'
-                    icon={<DownloadIcon/>}
-                    variant='outline'
-                    size="lg"
-                    onClick={handlePrintPDF}
-                /></Box>
-            </Box>
-            {DATA.reverse().map((item) => (
-                <TransactionCard key={item.Record_Number} data={item}/>
-            ))}
-            <BacktoDashboardButton/>
+                <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <Box>
+                        <Heading
+                            m='15'
+                            p='5'
+                            as='h2'
+                            size='3xl'
+                            bgGradient='linear(to-r, blue.600, green.300)'
+                            bgClip='text'
+                        >
+                            Transaction History
+                        </Heading>
+                    </Box>
+                    <Box><IconButton
+                        m='15' p='5'
+                        aria-label='Options'
+                        icon={<DownloadIcon/>}
+                        variant='outline'
+                        size="lg"
+                        onClick={handlePrintPDF}
+                    /></Box>
+                </Box>
+                {DATA.reverse().map((item) => (
+                    <TransactionCard key={item.Record_Number} data={item}/>
+                ))}
+                <BacktoDashboardButton/>
             </div>
         </div>
     );
