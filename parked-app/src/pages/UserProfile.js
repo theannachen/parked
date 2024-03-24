@@ -84,6 +84,46 @@ const VehicleCard = ({key, data}) => {
     );
 };
 
+// ListingList component
+const ListingCard = ({key, data}) => {
+    console.log(data)
+    return (
+        <Card m='30' py='10' pl = '10%'>
+            <CardHeader>
+                <Heading size='lg' mb='10'>{(data.attributes.Address)} </Heading>
+            </CardHeader>
+            <CardBody>
+                <Stack divider={<StackDivider />} spacing='4'>
+                    <Box>
+                        <Heading size='md' textTransform='uppercase'>
+                            Start Date
+                        </Heading>
+                        <Text pt='2' mb = '8'>
+                            {data.attributes.start_date}
+                        </Text>
+                    </Box>
+                    <Box>
+                        <Heading size='md' textTransform='uppercase'>
+                            End Date
+                        </Heading>
+                        <Text pt='2' mb = '8'>
+                            {data.attributes.end_date}
+                        </Text>
+                    </Box>
+                    <Box>
+                        <Heading size='md' textTransform='uppercase'>
+                            Cost
+                        </Heading>
+                        <Text pt='2' mb = '8'>
+                            ${data.attributes.price}
+                        </Text>
+                    </Box>
+                </Stack>
+            </CardBody>
+        </Card>
+    );
+};
+
 
 
 async function getUserData(email) {
@@ -149,13 +189,19 @@ const UserProfile = () => {
                     ) : (
                         <Text  m='15' p='5'>No vehicles registered</Text>
                     )}
+                    <Heading m='15' p='5' as='h2' size='2xl'>Listings</Heading>
+                    {userData.attributes.listings.data.length > 0 ? (
+                        userData.attributes.listings.data.map((item, index) => (
+                            <ListingCard key={item.id} data={item}/>
+                        ))
+                    ) : (
+                        <Text  m='15' p='5'>No listings registered</Text>
+                    )}
 
                     </div>
             ) : (
                 <div/>
             )}
-
-
 
             <BacktoDashboardButton/>
         </Box>
