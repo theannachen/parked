@@ -1,11 +1,10 @@
 import {useLogoutFunction, useRedirectFunctions, withRequiredAuthInfo} from "@propelauth/react";
 import React from "react";
+import axios from 'axios';
 import {Box, Button, Card, Flex, Text, Stack, Heading} from "@chakra-ui/react";
 import AuthButtons from "../components/AuthButtons";
 import NavBar from "../components/NavBar";
 import LandingPage from "./LandingPage";
-
-const bookings = ["bbb", "ccc", "ddd"];
 
 const DATA = [
     {
@@ -33,6 +32,18 @@ const DATA = [
         Owner_ID: 5
     },
 ];
+
+const getBookings = async() => {
+    try {
+        const response = await axios.get("http://localhost:5600/");
+        return response.data.record.Address;
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+        throw error; // Re-throw the error to handle it outside the function
+    }
+}
+
+const books = await getBookings();
 
 const HorizontalCard = ({ data }) => {
     return (
