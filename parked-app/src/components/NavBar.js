@@ -76,11 +76,14 @@ const NavBar = () => {
                         size = "lg"
                     />
                     <MenuList>
-                        <MenuItem>Profile</MenuItem>
-                        <MenuItem>Create a Copy</MenuItem>
-                        <MenuItem>Mark as Draft</MenuItem>
-                        <MenuItem>Delete</MenuItem>
-                        <MenuItem>Attend a Workshop</MenuItem>
+                        <menuGroup title="Profile">
+                            <MenuItem>My Profile</MenuItem>
+                            <MenuItem>Payment Methods</MenuItem>
+                            <MenuItem>Parking History</MenuItem>
+                        </menuGroup>
+                        <MenuDivider />
+                        <MenuItem>Settings</MenuItem>
+                        <MenuItem>Log Out</MenuItem>
                     </MenuList>
                 </Menu>
             </Flex>
