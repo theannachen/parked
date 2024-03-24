@@ -27,23 +27,24 @@ const DATA = [
         Owner_ID: 5
     },
 ];
-//
-// const getBookings = async() => {
-//     try {
-//         const response = await axios.get("http://localhost:5600/");
-//         return response.data.record.Address;
-//     } catch (error) {
-//         console.error('Error fetching data: ', error);
-//         throw error; // Re-throw the error to handle it outside the function
-//     }
-// }
 
-// const books = await getBookings();
+const getBookings = async() => {
+    try {
+        const response = await axios.get("http://localhost:5600/");
+        return response.data.record.Address;
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+        throw error; // Re-throw the error to handle it outside the function
+    }
+}
+
+const books = await getBookings();
 
 const HorizontalCard = ({ data }) => {
     return (
         <Card p="4" mb="5" bg='tomato' mx="20">
             <Flex alignItems="center" justifyContent="space-between">
+                {console.log(books)}
                 {/* Left Section */}
                 <Box flex="1">
                     <Text fontWeight="bold">{data.Address}</Text>

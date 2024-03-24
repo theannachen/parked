@@ -1,23 +1,19 @@
 import NavBar from "../components/NavBar";
-import {Button} from "@chakra-ui/react";
+import {Button, Link} from "@chakra-ui/react";
 import Dashboard from "./Dashboard";
 import {useRedirectFunctions, withAuthInfo} from "@propelauth/react";
 
 
 const LandingPage = withAuthInfo(({isLoggedIn, change}) => {
     const {redirectToSignupPage, redirectToLoginPage} = useRedirectFunctions();
-    var text;
-    if(isLoggedIn){
-        text = "Dashboard";
-    }
-    else{
-        text = "Join now!";
-    }
+    let text = isLoggedIn ? "Dashboard" : "Join now!";
+    let redirect = isLoggedIn ? "/dashboard" : "";
     return (
         <div>
+            <Link to="/dashboard">
             <Button colorScheme="blue" onClick={() => {
                 if(isLoggedIn){
-                    change(<Dashboard change = {change}/>);
+
                 }
                 else{
                     text = "Dashboard";
@@ -26,6 +22,7 @@ const LandingPage = withAuthInfo(({isLoggedIn, change}) => {
             }}>
                 {text}
             </Button>
+            </Link>
         </div>
     );
 });

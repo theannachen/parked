@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Landing from './pages/LandingPage';
+import Dashboard from "./pages/Dashboard";
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from '@propelauth/react';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Routes, Route } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +15,11 @@ root.render(
       <AuthProvider authUrl={process.env.REACT_APP_PROPELAUTH_AUTH_URL}>
           <BrowserRouter>
               <ChakraProvider>
-                <App/>
+                  <Routes>
+                      <Route path="/" element={<App />} />
+                      <Route path="/landing" element={<Landing />} />
+                      <Route path="/dashboard" element={<Dashboard />} />
+                  </Routes>
               </ChakraProvider>
           </BrowserRouter>
       </AuthProvider>
