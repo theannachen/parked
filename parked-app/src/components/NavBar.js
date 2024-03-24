@@ -17,6 +17,7 @@ import logo from '../assets/parked_logo.png';
 import LandingPage from "../pages/LandingPage";
 import {useLogoutFunction, withRequiredAuthInfo} from "@propelauth/react";
 import {useState} from "react";
+import { Link } from "react-router-dom";
 
 const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change, setDashboard, getIsHost}) => {
     // var switchComponent;
@@ -59,9 +60,10 @@ const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change, setDashboard, getIs
                         />
                         <MenuList>
                             <menuGroup title="Profile">
-                                <MenuItem>My Profile</MenuItem>
-                                <MenuItem>Payment Methods</MenuItem>
-                                <MenuItem>Parking History</MenuItem>
+                                <Link to="/profile"><MenuItem>My Profile</MenuItem></Link>
+                                <Link to="/payments"><MenuItem>Payment Methods</MenuItem></Link>
+                                <Link to="/dashboard"><MenuItem>Parking History</MenuItem></Link>
+                                <Link to="/history"><MenuItem>Transaction History</MenuItem></Link>
                             </menuGroup>
                             <MenuDivider/>
                             <MenuItem onClick={() => {
