@@ -1,8 +1,25 @@
 import {Box, Button, Card, Heading, IconButton, Image, StackDivider, Text} from "@chakra-ui/react";
 import {CardBody, CardHeader, Stack} from "react-bootstrap";
 import React from "react";
-import logo from "../assets/logo.svg";
-import {AddIcon, DownloadIcon} from "@chakra-ui/icons";
+import logo from "../assets/parked_logo.svg";
+import {DownloadIcon} from "@chakra-ui/icons";
+import html2pdf from "html2pdf.js/src";
+
+const handlePrintPDF = () => {
+    // Select the element containing the content to be printed
+    const element = document.getElementById("contentToPrint");
+
+    // Configure the options for html2pdf
+    const options = {
+        filename: 'Parked_Transaction_History.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    // Call html2pdf and pass the element and options
+    html2pdf().from(element).set(options).save();
+};
 
 const DATA = [
     {
@@ -70,13 +87,16 @@ const TransactionCard= ({ data}) => {
 };
 
 const History = () => {
-    return (<div>
+    return (<div >
             <Box display="flex"
                  justifyContent="center" py='2'
                  bg='tomato'>
                 <Image objectFit={"contain"} src={logo} alt='logo' htmlWidth='20%'/>
 
             </Box>
+            <div id="contentToPrint">
+
+
             <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Box><Heading m='15' p ='5' as='h2' size='3xl'>Transaction History</Heading></Box>
                 <Box><IconButton
@@ -85,6 +105,7 @@ const History = () => {
                     icon={<DownloadIcon/>}
                     variant='outline'
                     size="lg"
+                    onClick={handlePrintPDF}
                 /></Box>
             </Box>
             {DATA.reverse().map((item) => (
@@ -99,6 +120,7 @@ const History = () => {
                     Go Back to Dashboard
                 </Button>
             </Box>
+            </div>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import {Box, Button, Card, Flex, Heading, IconButton, Image, MenuButton, StackDivider, Text} from "@chakra-ui/react";
 import {CardBody, CardHeader, Stack} from "react-bootstrap";
-import logo from "../assets/logo.svg";
+import logo from "../assets/parked_logo.svg";
 import React from "react";
 import {AddIcon, HamburgerIcon} from "@chakra-ui/icons";
 
