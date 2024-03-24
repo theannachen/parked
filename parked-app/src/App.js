@@ -5,19 +5,13 @@ import { useState } from 'react';
 
 
 const App = withAuthInfo(({isLoggedIn}) => {
-  const [curPage, setCurPage] = useState(<Dashboard change = {handleState}/>);
+  const [curPage, setCurPage] = useState(<LandingPage change = {handleState}/>);
 
   function handleState(page) {
     setCurPage(page);
   }
+  return curPage
 
-
-  if(isLoggedIn){
-    return curPage
-  }
-  else{
-    return <LandingPage change = {handleState}/>
-  }
 })
 
 export default App;

@@ -67,7 +67,7 @@ const Dashboard = withRequiredAuthInfo(({ isLoggedIn , change}) => {
             ))}
             <Box display="flex"
                  justifyContent="center">
-                <Button colorScheme="blue" onClick={() => {change(<LandingPage change ={change}/>);}}>
+                <Button colorScheme="blue" >
                     Click me!
                 </Button>
 
