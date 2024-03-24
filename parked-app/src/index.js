@@ -8,6 +8,11 @@ import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from '@propelauth/react';
 import {BrowserRouter, Routes, Route } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react';
+import UserProfile from "./pages/UserProfile";
+import Payments from "./pages/Payments";
+import History from "./pages/History";
+import AddListing from "./pages/AddListing";
+import AddPayment from "./pages/AddPayment";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +24,11 @@ root.render(
                       <Route path="/" element={<App />} />
                       <Route path="/landing" element={<Landing />} />
                       <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/profile" element={<UserProfile />} />
+                      <Route path="/payments" element={<Payments />} />
+                      <Route path="/history" element={<History />} />
+                      <Route path="/addListing" element={<AddListing />} />
+                      <Route path="/addPayment" element={<AddPayment />} />
                   </Routes>
               </ChakraProvider>
           </BrowserRouter>

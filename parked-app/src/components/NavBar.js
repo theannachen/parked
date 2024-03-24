@@ -64,7 +64,6 @@ const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change, setDashboard, getIs
                                 <MenuItem>Parking History</MenuItem>
                             </menuGroup>
                             <MenuDivider/>
-                            <MenuItem>Settings</MenuItem>
                             <MenuItem onClick={() => {
                                 logoutFn(false)
                                     .then(r => change(<LandingPage change={change}/>))

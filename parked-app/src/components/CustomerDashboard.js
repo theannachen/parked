@@ -18,7 +18,6 @@ const HorizontalCard = ({data}) => {
     if (data.Availability.value !== "Yes") {
         return null; // Return null if availability is not "Yes"
     }
-
     return (<Card
         p="4"
         mb="5"
