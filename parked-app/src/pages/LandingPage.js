@@ -55,6 +55,11 @@ const LandingPage = withAuthInfo(({isLoggedIn, change, deviceType}) => {
         { title: "Concerts & Events", text: "Reserve parking for events in advance and save time for the show, not the search." },
         { title: "City Shopping", text: "Your empty space could be a shopper's treasure. List it and benefit from the bustle." },
         { title: "Air Travel", text: "Jet set stress-free knowing your car is parked just a shuttle away." },
+        { title: "Sporting Events", text: "Game on! Secure your parking early and cheer for your team without the pre-game parking hassle." },
+        { title: "Commuter Parking", text: "Make your daily commute easier with a guaranteed spot close to your office." },
+        { title: "Downtown Dining", text: "Savor the flavor of downtown dining without the sour taste of parking troubles." },
+        { title: "Churches & Schools", text: "Support your community by offering your lot during services and school events, turning empty space into meaningful income." },
+        { title: "Hospital Visits", text: "Focus on your loved ones, not on finding parking, during hospital visits." },
     ];
 
     return (
