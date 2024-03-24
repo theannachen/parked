@@ -15,17 +15,12 @@ import {HamburgerIcon} from '@chakra-ui/icons';
 import { Wrap, WrapItem } from '@chakra-ui/react'
 import logo from '../assets/parked_logo.png';
 import LandingPage from "../pages/LandingPage";
-import {useLogoutFunction, withRequiredAuthInfo} from "@propelauth/react";
+import {useAuthInfo, useLogoutFunction, withRequiredAuthInfo} from "@propelauth/react";
 import {useState} from "react";
 import { Link } from "react-router-dom";
 
 const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change, setDashboard, getIsHost}) => {
-    // var switchComponent;
     const [checked, setChecked] = useState(getIsHost);
-    // checked ? switchComponent =  : switchComponent = <Switch colorScheme="teal" size="lg" mx='5' onChange = {()=>{
-    //     setChecked(!checked);
-    //     setDashboard(!checked);
-    // }}/>
 
     const logoutFn = useLogoutFunction()
         return (
@@ -61,9 +56,8 @@ const NavBar =  withRequiredAuthInfo(({ isLoggedIn , change, setDashboard, getIs
                         <MenuList>
                             <menuGroup title="Profile">
                                 <Link to="/profile"><MenuItem>My Profile</MenuItem></Link>
-                                <Link to="/payments"><MenuItem>Payment Methods</MenuItem></Link>
-                                <Link to="/dashboard"><MenuItem>Parking History</MenuItem></Link>
                                 <Link to="/history"><MenuItem>Transaction History</MenuItem></Link>
+                                <Link to="/payments"><MenuItem>Payment Methods</MenuItem></Link>
                             </menuGroup>
                             <MenuDivider/>
                             <MenuItem onClick={() => {

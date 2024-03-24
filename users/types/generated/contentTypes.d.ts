@@ -941,7 +941,6 @@ export interface ApiTransactionTransaction extends Schema.CollectionType {
       'oneToOne',
       'api::listing.listing'
     >;
-    cost: Attribute.Decimal & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
