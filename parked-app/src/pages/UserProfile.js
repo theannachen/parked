@@ -124,18 +124,27 @@ const UserProfile = () => {
             <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Box><Heading m='15' p='5' as='h2' size='2xl'>Personal Information</Heading></Box>
             </Box>
-            {/*<Box mb={4} mx={15} p={5}>*/}
-            {/*    <Heading size='md' textTransform='uppercase' pb={3}>*/}
-            {/*        First Name:*/}
-            {/*    </Heading>*/}
-            {/*    <Text pt='2'>{userData.first_name}</Text>*/}
-            {/*</Box>*/}
-            {/*<Box mb={4} mx={15} p={5}>*/}
-            {/*    <Heading size='md' textTransform='uppercase' pb={3}>*/}
-            {/*        Last Name:*/}
-            {/*    </Heading>*/}
-            {/*    <Text pt='2'>{userData.last_name}</Text>*/}
-            {/*</Box>*/}
+            {userData ? (
+                <div>
+
+                <Box mb={4} mx={15} p={5}>
+                    <Heading size='md' textTransform='uppercase' pb={3}>
+                        First Name:
+                    </Heading>
+                    <Text pt='2'>{userData.attributes.FirstName}</Text>
+                </Box>
+                <Box mb={4} mx={15} p={5}>
+                    <Heading size='md' textTransform='uppercase' pb={3}>
+                        Last Name:
+                    </Heading>
+                    <Text pt='2'>{userData.attributes.LastName}</Text>
+                </Box>
+                    </div>
+            ) : (
+                <div/>
+            )}
+
+
             {/*<Heading m='15' p='5' as='h2' size='2xl'>Registered Vehicles</Heading>*/}
             {/*{userData.vehicles.map((item, index) => (*/}
             {/*    <VehicleCard key={item.Record_Number} data={item}/>*/}
