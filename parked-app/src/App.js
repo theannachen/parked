@@ -1,5 +1,4 @@
 import {withAuthInfo } from '@propelauth/react';
-import {withAuthInfo } from '@propelauth/react';
 import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage";
 import { useState } from 'react';
