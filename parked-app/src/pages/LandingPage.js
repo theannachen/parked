@@ -104,6 +104,7 @@ const LandingPage = withAuthInfo(({isLoggedIn, change, deviceType}) => {
                 align='stretch'
                 padding={5}
                 fontFamily="helvetica"
+                textShadow='0px 0px 20px white'
             >
                 <Box
                     textAlign='Left'
@@ -126,7 +127,7 @@ const LandingPage = withAuthInfo(({isLoggedIn, change, deviceType}) => {
                 fontFamily="helvetica"
                 align="center">
                 <Link to="/dashboard">
-                    <Button size='lg' shadow = 'lg' colorScheme="teal" onClick={() => {
+                    <Button size='lg' shadow = '0px 0px 50px white' colorScheme="teal" onClick={() => {
                         if(isLoggedIn){
 
                         }
