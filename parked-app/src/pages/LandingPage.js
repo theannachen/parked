@@ -6,7 +6,13 @@ import {useRedirectFunctions, withAuthInfo} from "@propelauth/react";
 
 const LandingPage = withAuthInfo(({isLoggedIn, change}) => {
     const {redirectToSignupPage, redirectToLoginPage} = useRedirectFunctions();
-
+    var text;
+    if(isLoggedIn){
+        text = "Dashboard";
+    }
+    else{
+        text = "Join now!";
+    }
     return (
         <div>
             <Button colorScheme="blue" onClick={() => {
@@ -14,10 +20,11 @@ const LandingPage = withAuthInfo(({isLoggedIn, change}) => {
                     change(<Dashboard change = {change}/>);
                 }
                 else{
+                    text = "Dashboard";
                     redirectToLoginPage();
                 }
             }}>
-                Click me!
+                {text}
             </Button>
         </div>
     );
