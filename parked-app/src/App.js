@@ -10,8 +10,8 @@ const App = withAuthInfo(({isLoggedIn}) => {
   function handleState(page) {
     setCurPage(page);
   }
-
   return curPage
+
 })
 
 export default App;
