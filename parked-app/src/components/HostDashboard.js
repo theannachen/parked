@@ -41,14 +41,18 @@ const getBookings = async () => {
 
 const books = await getBookings();
 
-const HorizontalCard = ({data}) => {
+const gradientColors = [
+    "linear(to-r, green.400, teal.300)",
+    "linear(to-r, yellow.400, green.400)",
+    "linear(to-r, orange.300, yellow.400)",
+];
+
+const HorizontalCard = ({data, index}) => {
     return (<Card
         p="4"
         mb="5"
-        color='teal.900'
-        variant='outline'
-        borderWidth="2px"
-        borderColor='teal.500'
+        color='white'
+        bgGradient={gradientColors[index % 3]}
         mx="20"
         _hover={{transform: "scale(1.01)"}}
         transition="transform 0.4s ease-in-out">
@@ -56,23 +60,22 @@ const HorizontalCard = ({data}) => {
             {console.log(data)}
             {/* Left Section */}
             <Box flex="1">
-                <Text fontSize='xl' fontWeight="bold">{data.Address.value}</Text>
+                <Text fontSize='2xl' fontWeight="bold">{data.Address.value}</Text>
                 {data.Zone.value && <Text>Zoning: {data.Zone.value}</Text>}
                 {data.Desc.value && <Text>Additional Information: {data.Desc.value}</Text>}
             </Box>
             <Box
                 mr='10'
-                color='green.500'
                 fontSize='5xl'>
-                <Box display="inline-flex" color='green.700' fontSize='3xl'>$</Box> {data.Price.value}
+                <Box display="inline-flex" opacity="70%" fontSize='3xl'>$</Box> {data.Price.value}
             </Box>
             {/* Right Section */}
             <Link to='/booking'>
                 <Button
-                    colorScheme="green.500"
+                    colorScheme="white"
                     variant="outline"
-                    color="green.500"
-                    _hover={{bg: 'green.500', color: '#ffffff'}}
+                    color="white"
+                    _hover={{bg: "rgba(255,255,255,.7)" , color:"teal.500"}}
                     size="lg"
                     fontSize="2xl"
                 >
@@ -89,20 +92,20 @@ const HostDashboard = ({change, setDashboard}) => {
     return (
         <div>
             <div>
-                <Text ml='55' mt='15' fontSize='25' color='teal.800' noOfLines={1}>Welcome back, Host!</Text>
+                <Text ml='55' mt='15' fontSize='25' color='teal.600' noOfLines={1}>Welcome back, Host!</Text>
                 <Heading
                     ml='10'
                     mb='4'
                     p='3'
                     size='3xl'
-                    bgGradient='linear(to-r, teal.400, green.300)'
+                    bgGradient='linear(to-r, cyan.600, green.300)'
                     bgClip='text'
                     noOfLines={1}
                 >
                     Available Bookings
                 </Heading>
-                {books.map((booking) => (
-                    <HorizontalCard key={booking.$id.value} data={booking}/>
+                {books.map((booking, index) => (
+                    <HorizontalCard key={booking.$id.value} data={booking} index={index} />
                 ))}
             </div>
         </div>
