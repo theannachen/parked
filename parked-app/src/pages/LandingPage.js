@@ -5,7 +5,6 @@ import {
     Divider,
     Heading,
     Image,
-    Link,
     SimpleGrid,
     StackDivider,
     Text,
@@ -18,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import Dashboard from "./Dashboard";
 import {useRedirectFunctions, withAuthInfo} from "@propelauth/react";
+import { Link } from "react-router-dom";
 import logo from '../assets/parked_logo.png';
 import React from "react";
 import Carousel from 'react-multi-carousel';
@@ -135,17 +135,20 @@ const LandingPage = withAuthInfo(({isLoggedIn, change, deviceType}) => {
                 fontFamily="helvetica"
                 align="center">
                 <Link to="/dashboard">
-                    <Button size='lg' shadow = '0px 0px 50px white' colorScheme="teal" onClick={() => {
-                        if(isLoggedIn){
-
-                        }
-                        else{
-                            text = "Join now!";
-                            redirectToLoginPage();
-                        }
-                    }}>
-                        Join Now!
-                    </Button>
+                    <Button
+                        size='lg'
+                        fontSize='25px'
+                        p='4'
+                        shadow = 'lg'
+                        bgGradient='linear(to-t, cyan.600, green.300)'
+                        _hover={{
+                            bgGradient:'linear(to-t, cyan.500, green.200)',
+                            color: "white",
+                            transform: "scale(1.03)",
+                            transition: "background-color 2s ease-in-out"}}
+                    >
+                        {text}
+</Button>
                 </Link>
             </Box>
             <Box position="relative" w="full" p={5}>
