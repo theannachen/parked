@@ -5,6 +5,7 @@ import LogoBanner from "../components/LogoBanner";
 import BacktoDashboardButton from "../components/BacktoDashboardButton";
 import {useAuthInfo} from "@propelauth/react";
 import axios from "axios";
+import {useState} from "react";
 
 const DATA =
     {
@@ -61,47 +62,68 @@ const DATA =
 ;
 
 // VehicleList component
-// const VehicleCard = ({key, data}) => {
-//
-//     return (
-//         <Card m='30' py='10' pl = '10%'>
-//             <CardHeader>
-//                 <Heading size='lg' mb='10'>{data.make_model}</Heading>
-//             </CardHeader>
-//             <CardBody>
-//                 <Stack divider={<StackDivider />} spacing='4'>
-//                     <Box>
-//                         <Heading size='md' textTransform='uppercase'>
-//                             License Plate:
-//                         </Heading>
-//                         <Text pt='2' mb = '8'>
-//                             {data.license_plate}
-//                         </Text>
-//                     </Box>
-//                 </Stack>
-//             </CardBody>
-//         </Card>
-//     );
-// };
+const VehicleCard = ({key, data}) => {
 
-const UserProfile = async () => {
-    const email = useAuthInfo().user.email;
-    let userData;
+    return (
+        <Card m='30' py='10' pl = '10%'>
+            <CardHeader>
+                <Heading size='lg' mb='10'>{data.make_model}</Heading>
+            </CardHeader>
+            <CardBody>
+                <Stack divider={<StackDivider />} spacing='4'>
+                    <Box>
+                        <Heading size='md' textTransform='uppercase'>
+                            License Plate:
+                        </Heading>
+                        <Text pt='2' mb = '8'>
+                            {data.license_plate}
+                        </Text>
+                    </Box>
+                </Stack>
+            </CardBody>
+        </Card>
+    );
+};
 
+
+
+async function getUserData(email) {
     try {
-        const response = await axios.get("http://localhost:5600/getUser?email=" + email);
-        console.log(response.data);
+        // const res = await fetch("http://localhost:1337/api/app-users?filters[email][$contains]=" + email, {cache: "no-store"});
+        // return await res;
+        const response = await fetch("http://localhost:1337/api/app-users?filters[email][$eq]=" + email, {cache: "no-store"});
+        return response.json();
     } catch (error) {
         console.error('Error fetching data: ', error);
         throw error; // Re-throw the error to handle it outside the function
     }
-    // console.log(userData);
+}
+
+const UserProfile = () => {
+    let userInfoPropel = useAuthInfo();
+    const [userData, setUserData] = useState(null);
+    const [hasGottenUser, setHasGottenUser] = useState(false);
+    // console.log(userData.Object);
+    if(userInfoPropel.user !== undefined && !hasGottenUser){
+
+        getUserData(userInfoPropel.user.email).then(result => {
+            // do things with the result here, like call functions with them
+            if(result.data){
+                if(result.data[0]){
+                    setUserData(result.data[0]);
+                    setHasGottenUser(true);
+                }
+            }
+            console.log(result.data[0])
+        })
+    }
+
 
     return (<Box p='4'>
             <LogoBanner/>
-            {/*<Box display="flex" justifyContent="space-between" alignItems="center">*/}
-            {/*    <Box><Heading m='15' p='5' as='h2' size='2xl'>Personal Information</Heading></Box>*/}
-            {/*</Box>*/}
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Box><Heading m='15' p='5' as='h2' size='2xl'>Personal Information</Heading></Box>
+            </Box>
             {/*<Box mb={4} mx={15} p={5}>*/}
             {/*    <Heading size='md' textTransform='uppercase' pb={3}>*/}
             {/*        First Name:*/}
