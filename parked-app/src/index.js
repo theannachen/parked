@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from '@propelauth/react';
 import {BrowserRouter} from "react-router-dom";
+import {ChakraProvider} from "@chakra-ui/react";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <AuthProvider authUrl={process.env.REACT_APP_PROPELAUTH_AUTH_URL}>
           <BrowserRouter>
-              <App/>
+              <ChakraProvider>
+                  <App/>
+              </ChakraProvider>
           </BrowserRouter>
       </AuthProvider>
   </React.StrictMode>
