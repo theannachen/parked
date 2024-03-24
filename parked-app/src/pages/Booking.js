@@ -1,4 +1,4 @@
-import {Box, Checkbox, Button, Image, Heading, Text} from "@chakra-ui/react";
+import {Box, Center, Checkbox, Button, Image, Heading, Text} from "@chakra-ui/react";
 import {Link, useHistory} from "react-router-dom";
 import CustomerDashboard from "../components/CustomerDashboard";
 import thanks_img from '../assets/thank_you.png';
@@ -19,7 +19,8 @@ async function getUserData(email) {
     }
 }
 
-const Booking = () => {let userInfoPropel = useAuthInfo();
+const Booking = () => {
+    let userInfoPropel = useAuthInfo();
     const [userData, setUserData] = useState(null);
     const [hasGottenUser, setHasGottenUser] = useState(false);
 
@@ -44,7 +45,7 @@ const Booking = () => {let userInfoPropel = useAuthInfo();
         console.log("UID:", uid);
     }, []);
 
-    if(uid == null){
+    if (uid == null) {
         return <BacktoDashboardButton/>
     }
 
@@ -77,22 +78,21 @@ const Booking = () => {let userInfoPropel = useAuthInfo();
                 Confirm Payment
             </Heading>
             <Box m={7} py='10'>
-                <Checkbox colorScheme='green' size='lg' mb={10}>
-                    Confirm
-                </Checkbox>
-                <Button
-                    size='xl'
-                    display="block"
-                    colorScheme="teal.500"
-                    variant="outline"
-                    color="teal.500"
-                    _hover={{bg: 'teal.500', color: '#ffffff'}}
-                    size="lg"
-                    fontSize="2xl"
-                    onClick={paymentProcessed}
-                >
-                    Confirm
-                </Button>
+                <Center>
+                    <Button
+                        size='xl'
+                        display="block"
+                        colorScheme="teal.500"
+                        variant="outline"
+                        color="teal.500"
+                        _hover={{bg: 'teal.500', color: '#ffffff'}}
+                        size="lg"
+                        fontSize="2xl"
+                        onClick={paymentProcessed}
+                    >
+                        Confirm
+                    </Button>
+                </Center>
             </Box>
             <BacktoDashboardButton/>
         </Box>
