@@ -2,7 +2,6 @@ import {Box, Button, Card, Flex, Heading, Text} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 const getBookings = async () => {
     try {
         const response = await axios.get("http://localhost:5600/");
@@ -53,6 +52,7 @@ const HorizontalCard = ({data}) => {
                     size="lg"
                     fontSize="2xl"
                 >
+
                     Book now!
                 </Button>
             </Link>
