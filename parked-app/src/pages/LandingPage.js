@@ -61,6 +61,12 @@ const LandingPage = withAuthInfo(({isLoggedIn, change, deviceType}) => {
         { title: "Churches & Schools", text: "Support your community by offering your lot during services and school events, turning empty space into meaningful income." },
         { title: "Hospital Visits", text: "Focus on your loved ones, not on finding parking, during hospital visits." },
         { title: "Rural Retreats & Events", text: "Transform your open land into a venue for weddings, festivals, and retreats with ample parking from Parked." }
+        { title: "Beachfront Parking", text: "Catch the wave of opportunity by listing your seaside space. Parked brings beachgoers directly to your door." },
+        { title: "Historic Sites", text: "Your nearby lot could be the gateway to history. Offer parking that's as convenient as it is cultural." },
+        { title: "Food Truck Frenzy", text: "Be the go-to lot for foodies on the move. List your space for hungry patrons looking for their next culinary adventure." },
+        { title: "Outdoor Markets", text: "Give shoppers the gift of convenience with easy parking at weekend markets. It's local commerce made simple." },
+        { title: "Pop-Up Events", text: "From art shows to pop-up shops, your parking space can be the hotspot for the latest local event scene." },
+
 
     ];
 
