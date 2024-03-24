@@ -6,14 +6,38 @@ import logo from "../assets/parked_logo.png";
 import React, {useEffect, useState} from "react";
 import BacktoDashboardButton from "../components/BacktoDashboardButton";
 import axios from "axios";
+import {useAuthInfo} from "@propelauth/react";
 
 
+async function getUserData(email) {
+    try {
+        const response = await fetch("http://localhost:1337/api/app-users?filters[email][$eq]=" + email + "&populate=*", {cache: "no-store"});
+        return response.json();
+    } catch (error) {
+        console.error('Error fetching data: ', error);
+        throw error; // Re-throw the error to handle it outside the function
+    }
+}
+
+const Booking = () => {let userInfoPropel = useAuthInfo();
+    const [userData, setUserData] = useState(null);
+    const [hasGottenUser, setHasGottenUser] = useState(false);
 
 
-const Booking = () => {
     const [uid, setuid] = useState(undefined);
     const [processing, setProcessing] = useState(true);
+    if (userInfoPropel.user !== undefined && !hasGottenUser) {
 
+        getUserData(userInfoPropel.user.email).then(result => {
+            // do things with the result here, like call functions with them
+            if (result.data) {
+                if (result.data[0]) {
+                    setUserData(result.data[0]);
+                    setHasGottenUser(true);
+                }
+            }
+        })
+    }
     useEffect(() => {
         const queryParams = new URLSearchParams(window.location.search);
         setuid(queryParams.get("uid"));
@@ -33,7 +57,7 @@ const Booking = () => {
                 data: {
                     uid: "adlkjh" + uid,
                     listing: uid,
-                    buyer: 1
+                    buyer: userData.id
                 }
             }
         );
