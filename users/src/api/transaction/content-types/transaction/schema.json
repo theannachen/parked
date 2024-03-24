@@ -26,10 +26,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::listing.listing"
-    },
-    "cost": {
-      "type": "decimal",
-      "required": true
     }
   }
 }
