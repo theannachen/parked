@@ -1,5 +1,5 @@
 import {Box, Divider, Image, Stack} from "@chakra-ui/react";
-import logo from "../assets/parked_logo.svg";
+import logo from "../assets/parked_logo.png";
 import React from "react";
 
 const LogoBanner = () => {
