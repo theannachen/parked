@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from '@propelauth/react';
 import {BrowserRouter} from "react-router-dom";
-import {ChakraProvider} from "@chakra-ui/react";
+import { ChakraProvider } from '@chakra-ui/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +13,7 @@ root.render(
       <AuthProvider authUrl={process.env.REACT_APP_PROPELAUTH_AUTH_URL}>
           <BrowserRouter>
               <ChakraProvider>
-                  <App/>
+                <App/>
               </ChakraProvider>
           </BrowserRouter>
       </AuthProvider>
@@ -24,3 +24,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
