@@ -60,6 +60,8 @@ const LandingPage = withAuthInfo(({isLoggedIn, change, deviceType}) => {
         { title: "Downtown Dining", text: "Savor the flavor of downtown dining without the sour taste of parking troubles." },
         { title: "Churches & Schools", text: "Support your community by offering your lot during services and school events, turning empty space into meaningful income." },
         { title: "Hospital Visits", text: "Focus on your loved ones, not on finding parking, during hospital visits." },
+        { title: "Rural Retreats & Events", text: "Transform your open land into a venue for weddings, festivals, and retreats with ample parking from Parked." }
+
     ];
 
     return (
