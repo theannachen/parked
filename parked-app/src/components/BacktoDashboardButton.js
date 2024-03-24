@@ -1,9 +1,10 @@
 
 import {Box, Button} from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BacktoDashboardButton = () => {
-    return (<Box display="flex"
+    return (<Link to="/dashboard"><Box display="flex"
                  justifyContent="center" my = '8vh' >
             <Button colorScheme="blue" onClick={() => {
 
@@ -12,6 +13,7 @@ const BacktoDashboardButton = () => {
                 Go Back to Dashboard
             </Button>
         </Box>
+        </Link>
     );
 };
 

@@ -63,11 +63,10 @@ const DATA =
 
 // VehicleList component
 const VehicleCard = ({key, data}) => {
-
     return (
         <Card m='30' py='10' pl = '10%'>
             <CardHeader>
-                <Heading size='lg' mb='10'>{data.make_model}</Heading>
+                <Heading size='lg' mb='10'>{data.attributes.make} {data.attributes.model} </Heading>
             </CardHeader>
             <CardBody>
                 <Stack divider={<StackDivider />} spacing='4'>
@@ -76,7 +75,7 @@ const VehicleCard = ({key, data}) => {
                             License Plate:
                         </Heading>
                         <Text pt='2' mb = '8'>
-                            {data.license_plate}
+                            {data.attributes.license_plate}
                         </Text>
                     </Box>
                 </Stack>
@@ -89,9 +88,7 @@ const VehicleCard = ({key, data}) => {
 
 async function getUserData(email) {
     try {
-        // const res = await fetch("http://localhost:1337/api/app-users?filters[email][$contains]=" + email, {cache: "no-store"});
-        // return await res;
-        const response = await fetch("http://localhost:1337/api/app-users?filters[email][$eq]=" + email, {cache: "no-store"});
+        const response = await fetch("http://localhost:1337/api/app-users?filters[email][$eq]=" + email + "&populate=*", {cache: "no-store"});
         return response.json();
     } catch (error) {
         console.error('Error fetching data: ', error);
@@ -103,7 +100,6 @@ const UserProfile = () => {
     let userInfoPropel = useAuthInfo();
     const [userData, setUserData] = useState(null);
     const [hasGottenUser, setHasGottenUser] = useState(false);
-    // console.log(userData.Object);
     if(userInfoPropel.user !== undefined && !hasGottenUser){
 
         getUserData(userInfoPropel.user.email).then(result => {
@@ -114,7 +110,7 @@ const UserProfile = () => {
                     setHasGottenUser(true);
                 }
             }
-            console.log(result.data[0])
+            // console.log(result.data[0])
         })
     }
 
@@ -139,16 +135,28 @@ const UserProfile = () => {
                     </Heading>
                     <Text pt='2'>{userData.attributes.LastName}</Text>
                 </Box>
+                    <Box mb={4} mx={15} p={5}>
+                        <Heading size='md' textTransform='uppercase' pb={3}>
+                            Email Address:
+                        </Heading>
+                        <Text pt='2'>{userData.attributes.email}</Text>
+                    </Box>
+                    <Heading m='15' p='5' as='h2' size='2xl'>Registered Vehicles</Heading>
+                    {userData.attributes.vehicles.data.length > 0 ? (
+                        userData.attributes.vehicles.data.map((item, index) => (
+                            <VehicleCard key={item.id} data={item}/>
+                        ))
+                    ) : (
+                        <Text  m='15' p='5'>No vehicles registered</Text>
+                    )}
+
                     </div>
             ) : (
                 <div/>
             )}
 
 
-            {/*<Heading m='15' p='5' as='h2' size='2xl'>Registered Vehicles</Heading>*/}
-            {/*{userData.vehicles.map((item, index) => (*/}
-            {/*    <VehicleCard key={item.Record_Number} data={item}/>*/}
-            {/*))}*/}
+
             <BacktoDashboardButton/>
         </Box>
     );
